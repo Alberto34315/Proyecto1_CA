@@ -12,6 +12,7 @@ public class Operario {
     protected String password;
 
     public Operario() {
+        this(-1,"","","","");
     }
 
     public Operario(String nombre, String apellidos, String login, String password) {
@@ -28,6 +29,8 @@ public class Operario {
         this.login = login;
         this.password = password;
     }
+    
+    
 
     public int getCodigoOperario() {
         return codigoOperario;
