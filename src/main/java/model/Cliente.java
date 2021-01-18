@@ -17,7 +17,7 @@ public class Cliente {
     protected Date fecha_nac;
     protected String telefono;
     protected String email;
-
+    protected Cuenta cuenta;
     public Cliente() {
     }
 
@@ -42,6 +42,19 @@ public class Cliente {
         this.fecha_nac = fecha_nac;
         this.telefono = telefono;
         this.email = email;
+    }
+
+    public Cliente(int codigoCliente, String nombre, String apellidos, String dni, String login, String password, Date fecha_nac, String telefono, String email, Cuenta cuenta) {
+        this.codigoCliente = codigoCliente;
+        this.nombre = nombre;
+        this.apellidos = apellidos;
+        this.dni = dni;
+        this.login = login;
+        this.password = password;
+        this.fecha_nac = fecha_nac;
+        this.telefono = telefono;
+        this.email = email;
+        this.cuenta = cuenta;
     }
 
     public int getCodigoCliente() {
@@ -116,10 +129,21 @@ public class Cliente {
         this.email = email;
     }
 
+    public Cuenta getCuenta() {
+        return cuenta;
+    }
+
+    public void setCuenta(Cuenta cuenta) {
+        this.cuenta = cuenta;
+    }
+
     @Override
     public String toString() {
-        return "Cliente{" + "codigoCliente=" + codigoCliente + ", nombre=" + nombre + ", apellidos=" + apellidos + ", dni=" + dni + ", login=" + login + ", password=" + password + ", fecha_nac=" + fecha_nac + ", telefono=" + telefono + ", email=" + email + '}';
+        return "Cliente{" + "codigoCliente=" + codigoCliente + ", nombre=" + nombre + ", apellidos=" + apellidos + ", dni=" + dni + ", login=" + login + ", password=" + password + ", fecha_nac=" + fecha_nac + ", telefono=" + telefono + ", email=" + email + ", cuenta=" + cuenta + '}';
     }
+
+
+    
             
     
 }

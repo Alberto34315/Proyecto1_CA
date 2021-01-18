@@ -2,6 +2,7 @@
 package model;
 
 import java.sql.Date;
+import java.util.ArrayList;
 
 /**
  *
@@ -12,7 +13,9 @@ public class Cuenta {
     protected float saldo;
     protected Date fechaHoraC;
     protected Date fechaHoraUM;
-
+    protected ArrayList<Cliente> ListClient;
+    protected Date fechaHoraUA;
+    
     public Cuenta() {
     }
 
@@ -27,6 +30,31 @@ public class Cuenta {
         this.saldo = saldo;
         this.fechaHoraC = fechaHoraC;
         this.fechaHoraUM = fechaHoraUM;
+    }
+
+    public Cuenta(int codigoCuenta, float saldo, Date fechaHoraC, Date fechaHoraUM, ArrayList<Cliente> ListClient, Date fechaHoraUA) {
+        this.codigoCuenta = codigoCuenta;
+        this.saldo = saldo;
+        this.fechaHoraC = fechaHoraC;
+        this.fechaHoraUM = fechaHoraUM;
+        this.ListClient = ListClient;
+        this.fechaHoraUA = fechaHoraUA;
+    }
+
+    public ArrayList<Cliente> getListClient() {
+        return ListClient;
+    }
+
+    public void setListClient(ArrayList<Cliente> ListClient) {
+        this.ListClient = ListClient;
+    }
+
+    public Date getFechaHoraUA() {
+        return fechaHoraUA;
+    }
+
+    public void setFechaHoraUA(Date fechaHoraUA) {
+        this.fechaHoraUA = fechaHoraUA;
     }
 
     public int getCodigoCuenta() {
@@ -63,8 +91,9 @@ public class Cuenta {
 
     @Override
     public String toString() {
-        return "Cuenta{" + "codigoCuenta=" + codigoCuenta + ", saldo=" + saldo + ", fechaHoraC=" + fechaHoraC + ", fechaHoraUM=" + fechaHoraUM + '}';
+        return "Cuenta{" + "codigoCuenta=" + codigoCuenta + ", saldo=" + saldo + ", fechaHoraC=" + fechaHoraC + ", fechaHoraUM=" + fechaHoraUM + ", ListClient=" + ListClient + ", fechaHoraUA=" + fechaHoraUA + '}';
     }
-    
+
+
     
 }
