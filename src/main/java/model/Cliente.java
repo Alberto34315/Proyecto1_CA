@@ -22,6 +22,7 @@ public class Cliente {
     }
 
     public Cliente(String nombre, String apellidos, String dni, String login, String password, Date fecha_nac, String telefono, String email) {
+        this.codigoCliente=-1;
         this.nombre = nombre;
         this.apellidos = apellidos;
         this.dni = dni;
