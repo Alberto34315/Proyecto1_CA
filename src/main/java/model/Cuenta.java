@@ -1,7 +1,6 @@
-
 package model;
 
-import java.sql.Date;
+import java.sql.Timestamp;
 import java.util.ArrayList;
 
 /**
@@ -11,28 +10,28 @@ import java.util.ArrayList;
 public class Cuenta {
     protected int codigoCuenta;
     protected float saldo;
-    protected Date fechaHoraC;
-    protected Date fechaHoraUM;
+    protected Timestamp fechaHoraC;
+    protected Timestamp fechaHoraUM;
     protected ArrayList<Cliente> ListClient;
-    protected Date fechaHoraUA;
+    protected Timestamp fechaHoraUA;
     
     public Cuenta() {
     }
 
-    public Cuenta(float saldo, Date fechaHoraC, Date fechaHoraUM) {
+    public Cuenta(float saldo, Timestamp fechaHoraC, Timestamp fechaHoraUM) {
         this.saldo = saldo;
         this.fechaHoraC = fechaHoraC;
         this.fechaHoraUM = fechaHoraUM;
     }
 
-    public Cuenta(int codigoCuenta, float saldo, Date fechaHoraC, Date fechaHoraUM) {
+    public Cuenta(int codigoCuenta, float saldo, Timestamp fechaHoraC, Timestamp fechaHoraUM) {
         this.codigoCuenta = codigoCuenta;
         this.saldo = saldo;
         this.fechaHoraC = fechaHoraC;
         this.fechaHoraUM = fechaHoraUM;
     }
 
-    public Cuenta(int codigoCuenta, float saldo, Date fechaHoraC, Date fechaHoraUM, ArrayList<Cliente> ListClient, Date fechaHoraUA) {
+    public Cuenta(int codigoCuenta, float saldo, Timestamp fechaHoraC, Timestamp fechaHoraUM, ArrayList<Cliente> ListClient, Timestamp fechaHoraUA) {
         this.codigoCuenta = codigoCuenta;
         this.saldo = saldo;
         this.fechaHoraC = fechaHoraC;
@@ -49,11 +48,11 @@ public class Cuenta {
         this.ListClient = ListClient;
     }
 
-    public Date getFechaHoraUA() {
+    public Timestamp getFechaHoraUA() {
         return fechaHoraUA;
     }
 
-    public void setFechaHoraUA(Date fechaHoraUA) {
+    public void setFechaHoraUA(Timestamp fechaHoraUA) {
         this.fechaHoraUA = fechaHoraUA;
     }
 
@@ -73,19 +72,19 @@ public class Cuenta {
         this.saldo = saldo;
     }
 
-    public Date getFechaHoraC() {
+    public Timestamp getFechaHoraC() {
         return fechaHoraC;
     }
 
-    public void setFechaHoraC(Date fechaHoraC) {
+    public void setFechaHoraC(Timestamp fechaHoraC) {
         this.fechaHoraC = fechaHoraC;
     }
 
-    public Date getFechaHoraUM() {
+    public Timestamp getFechaHoraUM() {
         return fechaHoraUM;
     }
 
-    public void setFechaHoraUM(Date fechaHoraUM) {
+    public void setFechaHoraUM(Timestamp fechaHoraUM) {
         this.fechaHoraUM = fechaHoraUM;
     }
 
