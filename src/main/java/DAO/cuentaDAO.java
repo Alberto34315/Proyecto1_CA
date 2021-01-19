@@ -2,11 +2,11 @@ package DAO;
 
 import Utils.ConnectionUtils;
 import java.sql.Connection;
-import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.sql.Timestamp;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Level;
@@ -21,8 +21,10 @@ public class cuentaDAO extends Cuenta {
         UPDATE("UPDATE Cuenta SET saldo=?,fechaHoraC=?,fechaHoraUM=? WHERE codigoCuenta=?"),
         DELETE("DELETE FROM Cuenta WHERE codigoCuenta=?"),
         GETBYID("SELECT * FROM Cuenta WHERE codigoCuenta=?"),
-        GETALL("SELECT * FROM Cuenta");
-
+        GETALL("SELECT * FROM Cuenta"),
+        INSERTCLIENTC("INSERT INTO cliente_cuenta (codigoCliente,codigoCuenta,fechahoraultimoacceso) VALUES(?,?,?)"),
+        GETCLIENTBYIDC("SELECT c FROM cliente as c INNER JOIN cliente_cuenta as CC on CC.codigoCliente=c.codigoCliente WHERE CC.codigoCuenta=?"),
+        GETCOUNTBYIDCLIENT("SELECT c FROM cuenta as c INNER JOIN cliente_cuenta as CC on CC.codigoCuenta=c.codigoCuenta WHERE CC.codigoCliente=?");
         private String q;
 
         queries(String q) {
@@ -36,7 +38,7 @@ public class cuentaDAO extends Cuenta {
     
     Connection conn;
     
-    public cuentaDAO(int codigoCuenta, float saldo, Date fechaHoraC, Date fechaHoraUM) {
+    public cuentaDAO(int codigoCuenta, float saldo, Timestamp fechaHoraC, Timestamp fechaHoraUM) {
         super(codigoCuenta, saldo, fechaHoraC, fechaHoraUM);
     }
 
@@ -58,8 +60,8 @@ public class cuentaDAO extends Cuenta {
             } else {
                 PreparedStatement stat = conn.prepareStatement(queries.INSERT.getQ(), Statement.RETURN_GENERATED_KEYS);
                 stat.setFloat(1, a.getSaldo());
-                stat.setDate(2, a.getFechaHoraC());
-                stat.setDate(3,  a.getFechaHoraUM());
+                stat.setTimestamp(2, a.getFechaHoraC());
+                stat.setTimestamp(3,  a.getFechaHoraUM());
 
                 stat.executeUpdate();
                 try ( ResultSet generatedKeys = stat.getGeneratedKeys()) {
@@ -79,8 +81,8 @@ public class cuentaDAO extends Cuenta {
             conn = ConnectionUtils.getConnection();
             PreparedStatement stat = conn.prepareStatement(queries.UPDATE.getQ());
             stat.setFloat(1, a.getSaldo());
-            stat.setDate(2, (java.sql.Date) a.getFechaHoraC());
-            stat.setDate(3, (java.sql.Date) a.getFechaHoraUM());
+            stat.setTimestamp(2, (java.sql.Timestamp) a.getFechaHoraC());
+            stat.setTimestamp(3, (java.sql.Timestamp) a.getFechaHoraUM());
             stat.executeUpdate();
 
         } catch (SQLException ex) {
@@ -115,8 +117,8 @@ public class cuentaDAO extends Cuenta {
         cuentaDAO ADAO = new cuentaDAO();
         int codigoCuenta = rs.getInt("codigoCuenta");
         Float saldo = rs.getFloat("saldo");
-        Date fechaHoraC = rs.getDate("fechaHoraC");
-        Date fechaHoraUM = rs.getDate("fechaHoraUM");
+        Timestamp fechaHoraC = rs.getTimestamp("fechaHoraC");
+        Timestamp fechaHoraUM = rs.getTimestamp("fechaHoraUM");
         Cuenta a = new Cuenta(codigoCuenta, saldo, fechaHoraC, fechaHoraUM);
         return a;
     }
@@ -223,5 +225,29 @@ public class cuentaDAO extends Cuenta {
         }
         return result;
     }
+    
+    public boolean insertClienC(int a, int c, Timestamp f) {
+        boolean result = false;
+        clienteDAO cDAO = new clienteDAO();
+        try {
+            PreparedStatement stat = null;
+            conn = ConnectionUtils.getConnection();
+           stat = conn.prepareStatement(queries.INSERTCLIENTC.getQ());
+            if (this.getByID(a) != null && cDAO.getByID(c) != null) {
+                stat.setInt(1, a);
+                stat.setInt(2, c);
+                stat.setTimestamp(3, f);
+                stat.executeUpdate();
+                result=true;
+            } else {
+                result=false;
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(cuentaDAO.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
+        return result;
+    }
+    
     
 }

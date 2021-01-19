@@ -29,8 +29,8 @@ public class clienteDAO extends Cliente {
         INSERT("INSERT INTO cliente (codigoCliente, dni, login, nombre,apellidos,password,fecha_nac,telefono,email) VALUES (NULL,?,?,?,?,?,?,?,?)"),
         UPDATE("UPDATE cliente SET dni=?,login=?,nombre=?,apellidos=?,password=?,fecha_nac=?,telefono=?,email=? WHERE codigoCliente=?"),
         DELETE("DELETE FROM cliente WHERE codigoCliente=?"),
-        GETBYID("SELECT ID,Nombre,Nacionalidad,Foto FROM artista Where ID=?"),
-        GETALL("SELECT ID,Nombre,Nacionalidad,Foto FROM artista");
+        GETBYID("SELECT codigoCliente, dni, login, nombre,apellidos,password,fecha_nac,telefono,email FROM cliente Where codigoCliente=?"),
+        GETALL("SELECT codigoCliente, dni, login, nombre,apellidos,password,fecha_nac,telefono,email FROM cliente");
    //   GETDISCOLISTBYID("SELECT d.ID, d.Nombre, d.Foto, d.fechap, d.IDArtista FROM disco as d INNER JOIN artista as art on art.ID=d.IDArtista WHERE art.ID=?");
 
         private String q;
