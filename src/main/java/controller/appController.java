@@ -5,6 +5,7 @@
  */
 package controller;
 
+import java.sql.Timestamp;
 import java.util.List;
 import model.Cliente;
 import model.Connection;
@@ -120,6 +121,10 @@ public class appController {
     
     public List<Cliente> getClientsCount(int ID) {
         return cuentaControl.getClientsCount(ID);
+    }
+    
+    public boolean insertClientC(int a, int c, Timestamp f) {
+        return cuentaControl.insertClientC(a,c,f);
     }
     
 }

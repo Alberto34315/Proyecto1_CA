@@ -1,6 +1,7 @@
 package controller;
 
 import DAO.cuentaDAO;
+import java.sql.Timestamp;
 import java.util.List;
 import model.Cliente;
 import model.Cuenta;
@@ -78,5 +79,17 @@ public class cuentaController {
     public List<Cliente> getClientsCount(int ID) {
         cuentaDAO aDAO = new cuentaDAO();
         return aDAO.getListClienteCount(ID);
+    }
+    
+    public boolean insertClientC(int a, int c, Timestamp f) {
+        boolean result = false;
+        if (a != 0 && c!= 0) {
+            cuentaDAO aDAO = new cuentaDAO();
+            aDAO.insertClienC(a,c,f);
+            result = true;
+        } else {
+            result = false;
+        }
+        return result;
     }
 }
