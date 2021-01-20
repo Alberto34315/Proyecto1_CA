@@ -11,6 +11,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import model.Cliente;
 import model.Cuenta;
 
 
@@ -25,6 +26,7 @@ public class cuentaDAO extends Cuenta {
         INSERTCLIENTC("INSERT INTO cliente_cuenta (codigoCliente,codigoCuenta,fechahoraultimoacceso) VALUES(?,?,?)"),
         GETCLIENTBYIDC("SELECT c FROM cliente as c INNER JOIN cliente_cuenta as CC on CC.codigoCliente=c.codigoCliente WHERE CC.codigoCuenta=?"),
         GETCOUNTBYIDCLIENT("SELECT c FROM cuenta as c INNER JOIN cliente_cuenta as CC on CC.codigoCuenta=c.codigoCuenta WHERE CC.codigoCliente=?");
+        
         private String q;
 
         queries(String q) {
@@ -248,6 +250,74 @@ public class cuentaDAO extends Cuenta {
 
         return result;
     }
+    
+     public List<Cliente> getListClienteCount(int id) {
+        PreparedStatement stat = null;
+        ResultSet rs = null;
+        clienteDAO cDAO = new clienteDAO();
+        List<Cliente> clientes = new ArrayList<>();
+        try {
+            conn = ConnectionUtils.getConnection();
+            stat = conn.prepareStatement(queries.GETCLIENTBYIDC.getQ());
+            stat.setInt(1, id);
+            rs = stat.executeQuery();
+            while (rs.next()) {
+                clientes.add(cDAO.convert(rs));
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(cuentaDAO.class.getName()).log(Level.SEVERE, null, ex);
+        } finally {
+            if (rs != null) {
+                try {
+                    rs.close();
+                } catch (SQLException ex) {
+                    Logger.getLogger(cuentaDAO.class.getName()).log(Level.SEVERE, null, ex);
+                }
+            }
+            if (stat != null) {
+                try {
+                    stat.close();
+                } catch (SQLException ex) {
+                    Logger.getLogger(cuentaDAO.class.getName()).log(Level.SEVERE, null, ex);
+                }
+            }
+        }
+        return clientes;
+    }
+     
+     public Cuenta getCountByClient(int codigoCliente) {
+        PreparedStatement stat = null;
+        ResultSet rs = null;
+        Cuenta a = new Cuenta();
+        try {
+            conn = ConnectionUtils.getConnection();
+            stat = conn.prepareStatement(queries.GETCOUNTBYIDCLIENT.getQ());
+            stat.setInt(1, codigoCliente);
+            rs = stat.executeQuery();
+            if (rs.next()) {
+                a = convert(rs);
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(cuentaDAO.class.getName()).log(Level.SEVERE, null, ex);
+        } finally {
+            if (rs != null) {
+                try {
+                    rs.close();
+                } catch (SQLException ex) {
+                    Logger.getLogger(cuentaDAO.class.getName()).log(Level.SEVERE, null, ex);
+                }
+            }
+            if (stat != null) {
+                try {
+                    stat.close();
+                } catch (SQLException ex) {
+                    Logger.getLogger(cuentaDAO.class.getName()).log(Level.SEVERE, null, ex);
+                }
+            }
+        }
+        return a;
+    } 
+      
     
     
 }

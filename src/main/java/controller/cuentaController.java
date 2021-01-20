@@ -2,6 +2,7 @@ package controller;
 
 import DAO.cuentaDAO;
 import java.util.List;
+import model.Cliente;
 import model.Cuenta;
 
 public class cuentaController {
@@ -68,5 +69,14 @@ public class cuentaController {
     public boolean searchByCuentaID(int codigoCuenta) {
         cuentaDAO aDAO = new cuentaDAO();
         return aDAO.searchByID(codigoCuenta);
+    }
+    
+    public Cuenta getCuentaClientById(int codigoCliente) {
+        cuentaDAO aDAO = new cuentaDAO();
+        return aDAO.getCountByClient(codigoCliente);
+    }
+    public List<Cliente> getClientsCount(int ID) {
+        cuentaDAO aDAO = new cuentaDAO();
+        return aDAO.getListClienteCount(ID);
     }
 }

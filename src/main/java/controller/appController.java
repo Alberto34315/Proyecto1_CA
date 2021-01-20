@@ -114,5 +114,13 @@ public class appController {
      return cuentaControl.searchByCuentaID(id);
      }
     
+    public Cuenta getCuentaClientById(int id) {
+        return cuentaControl.getCuentaClientById(id);
+    }
+    
+    public List<Cliente> getClientsCount(int ID) {
+        return cuentaControl.getClientsCount(ID);
+    }
+    
 }
 

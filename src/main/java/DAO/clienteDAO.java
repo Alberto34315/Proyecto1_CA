@@ -138,7 +138,7 @@ public class clienteDAO extends Cliente {
         }
     }
      
-      private Cliente convert(ResultSet rs) throws SQLException {
+      public Cliente convert(ResultSet rs) throws SQLException {
         int codigoCliente = rs.getInt("codigoCliente");
         String dni = rs.getString("dni");
         String login = rs.getString("login");
