@@ -21,12 +21,12 @@ public class OperarioController {
         return instancia;
     }
 
-    public List<Operario> getAllSongs() {
+    public List<Operario> getAllOperario() {
         OperarioDAO cDAO = new OperarioDAO();
         return cDAO.getAll();
     }
 
-    public Operario getSongsById(int codigoOperario) {
+    public Operario getOperarioById(int codigoOperario) {
         OperarioDAO cDAO = new OperarioDAO();
         return cDAO.getByID(codigoOperario);
     }

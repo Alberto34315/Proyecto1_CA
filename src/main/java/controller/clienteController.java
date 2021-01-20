@@ -21,17 +21,17 @@ public class clienteController {
         return instancia;
     }
 
-    public List<Cliente> getAllSongs() {
+    public List<Cliente> getAllClients() {
         clienteDAO cDAO = new clienteDAO();
         return cDAO.getAll();
     }
 
-    public Cliente getSongsById(int codigoOperario) {
+    public Cliente getClientsById(int codigoOperario) {
         clienteDAO cDAO = new clienteDAO();
         return cDAO.getByID(codigoOperario);
     }
 
-    public boolean insertOpers(Cliente a) {
+    public boolean insertClients(Cliente a) {
         boolean result = false;
         if (a != null) {
             clienteDAO cDAO = new clienteDAO();
@@ -43,7 +43,7 @@ public class clienteController {
         return result;
     }
 
-    public boolean editOpers(Cliente a) {
+    public boolean editClients(Cliente a) {
         boolean result = false;
         if (a != null) {
             clienteDAO cDAO = new clienteDAO();
@@ -55,7 +55,7 @@ public class clienteController {
         return result;
     }
 
-    public boolean removeOpers(Cliente a) {
+    public boolean removeClients(Cliente a) {
         boolean result = false;
         if (a != null) {
             clienteDAO cDAO = new clienteDAO();
@@ -65,7 +65,7 @@ public class clienteController {
         }
         return result;
     }
-     public boolean searchOperByID(int codigo) {
+     public boolean searchClientsByID(int codigo) {
         clienteDAO cDAO = new clienteDAO();
         return cDAO.searchByID(codigo);
     }
