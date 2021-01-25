@@ -4,7 +4,7 @@ package model;
  *
  * @author jorog
  */
-public class Operario {
+public class Operario extends Thread{
     protected int codigoOperario;
     protected String nombre;
     protected String apellidos;

@@ -7,7 +7,7 @@ import java.util.ArrayList;
  *
  * @author jorog
  */
-public class Cuenta {
+public class Cuenta extends Thread{
     protected int codigoCuenta;
     protected float saldo;
     protected Timestamp fechaHoraC;

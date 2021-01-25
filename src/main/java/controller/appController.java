@@ -31,7 +31,7 @@ public class appController {
         cuentaControl=cuentaController.getInstance();
     }
     
-    public appController getInstance(){
+    public static appController getInstance(){
         instancia=new appController();
         return instancia;
     }

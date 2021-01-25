@@ -5,6 +5,8 @@
  */
 package Execute;
 
+import View.GUI;
+
 
 
 /**
@@ -13,5 +15,6 @@ package Execute;
  */
 public class execute {
     public static void main(String[] args) {
+        GUI.principal();
     }
 }

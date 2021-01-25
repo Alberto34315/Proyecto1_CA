@@ -6,7 +6,7 @@ import java.sql.Date;
  *
  * @author jorog
  */
-public class Cliente {
+public class Cliente extends Thread{
     
     protected int codigoCliente;
     protected String nombre;
