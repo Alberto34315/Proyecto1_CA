@@ -5,8 +5,12 @@
  */
 package View;
 
+import DAO.clienteDAO;
 import Utils.Utilities;
 import controller.appController;
+import java.util.ArrayList;
+import java.util.List;
+import model.Cliente;
 
 /**
  *
@@ -29,11 +33,30 @@ public class GUI {
         
         switch (op1) {
             case 1:
-
+                    
                 break;
 
             case 2:
-
+                
+                clienteDAO cliente1 = new clienteDAO();
+                clienteDAO cliente2 = new clienteDAO();
+                
+                List<Cliente> Cl = cliente1.getAll();
+                for (Cliente cliente : Cl) {
+                    if (cliente.getLogin().equals("Usuario1a") && cliente.getPassword().equals("Usuario1a")){
+                        cliente1 = new clienteDAO(cliente);
+                        cliente1.start();
+                    }
+                }
+                
+                List<Cliente> Cl2 = cliente2.getAll();
+                for (Cliente cliente : Cl2) {
+                    if (cliente.getLogin().equals("Usuario1b") && cliente.getPassword().equals("Usuario1b")){
+                        cliente2 = new clienteDAO(cliente);
+                        cliente2.start();
+                    }
+                }
+        
                 break;
 
             case 3:

@@ -253,4 +253,14 @@ public class clienteDAO extends Cliente {
         }
         return result;
     }
+    
+    //_______________________________________________________________________________HILO
+    public void run(){
+        cuentaDAO Cuenta = new cuentaDAO();
+        Cuenta cu = Cuenta.getCountByClient(this.codigoCliente);
+        System.out.println("Saldo de la cuenta: " + cu.getSaldo());
+        cu.setSaldo(cu.getSaldo()+200);
+        Cuenta.edit(cu);
+        System.out.println("Saldo actualizado: " + cu.getSaldo());
+    }
 }
