@@ -18,14 +18,14 @@ import model.Cuenta;
 public class cuentaDAO extends Cuenta {
     
     enum queries {
-        INSERT("INSERT INTO Cuenta (codigoCuenta, saldo, fechaHoraC, fechaHoraUM) VALUES (NULL,?,?,?)"),
-        UPDATE("UPDATE Cuenta SET saldo=?,fechaHoraC=?,fechaHoraUM=? WHERE codigoCuenta=?"),
+        INSERT("INSERT INTO Cuenta (codigoCuenta, saldo, fechahoracreacion, fechahoraultimamodificacion) VALUES (NULL,?,?,?)"),
+        UPDATE("UPDATE Cuenta SET saldo=?,fechahoracreacion=?,fechahoraultimamodificacion=? WHERE codigoCuenta=?"),
         DELETE("DELETE FROM Cuenta WHERE codigoCuenta=?"),
         GETBYID("SELECT * FROM Cuenta WHERE codigoCuenta=?"),
         GETALL("SELECT * FROM Cuenta"),
         INSERTCLIENTC("INSERT INTO cliente_cuenta (codigoCliente,codigoCuenta,fechahoraultimoacceso) VALUES(?,?,?)"),
-        GETCLIENTBYIDC("SELECT c FROM cliente as c INNER JOIN cliente_cuenta as CC on CC.codigoCliente=c.codigoCliente WHERE CC.codigoCuenta=?"),
-        GETCOUNTBYIDCLIENT("SELECT c FROM cuenta as c INNER JOIN cliente_cuenta as CC on CC.codigoCuenta=c.codigoCuenta WHERE CC.codigoCliente=?");
+        GETCLIENTBYIDC("SELECT c.* FROM cliente as c INNER JOIN cliente_cuenta as CC on CC.codigoCliente=c.codigoCliente WHERE CC.codigoCuenta=?"),
+        GETCOUNTBYIDCLIENT("SELECT c.* FROM cuenta as c INNER JOIN cliente_cuenta as CC on CC.codigoCuenta=c.codigoCuenta WHERE CC.codigoCliente=?");
         
         private String q;
 
@@ -85,6 +85,7 @@ public class cuentaDAO extends Cuenta {
             stat.setFloat(1, a.getSaldo());
             stat.setTimestamp(2, (java.sql.Timestamp) a.getFechaHoraC());
             stat.setTimestamp(3, (java.sql.Timestamp) a.getFechaHoraUM());
+             stat.setInt(4, a.getCodigoCuenta());
             stat.executeUpdate();
 
         } catch (SQLException ex) {
@@ -119,8 +120,8 @@ public class cuentaDAO extends Cuenta {
         cuentaDAO ADAO = new cuentaDAO();
         int codigoCuenta = rs.getInt("codigoCuenta");
         Float saldo = rs.getFloat("saldo");
-        Timestamp fechaHoraC = rs.getTimestamp("fechaHoraC");
-        Timestamp fechaHoraUM = rs.getTimestamp("fechaHoraUM");
+        Timestamp fechaHoraC = rs.getTimestamp("fechahoracreacion");
+        Timestamp fechaHoraUM = rs.getTimestamp("fechahoraultimamodificacion");
         Cuenta a = new Cuenta(codigoCuenta, saldo, fechaHoraC, fechaHoraUM);
         return a;
     }

@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <CONNECTION>
 <host>localhost</host>
- <db>discos</db>
+ <db>banco</db>
  <user>root</user> 
  <password></password>
  </CONNECTION>
