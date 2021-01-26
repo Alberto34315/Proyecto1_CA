@@ -53,6 +53,11 @@ public class cuentaDAO extends Cuenta {
     }
     
     //__________________________________________________________________________CRUD
+    
+    public void insertClient(Cliente c){
+        this.ListClient=new ArrayList<>();
+        this.ListClient.add(c);
+    }
     public void insert(Cuenta a) {
         int result = -1;
         try {
@@ -319,6 +324,43 @@ public class cuentaDAO extends Cuenta {
         return a;
     } 
       
+     public boolean searchCountByClient(int codigoCliente) {
+        boolean result = false;
+        PreparedStatement stat = null;
+        ResultSet rs = null;
+        try {
+            conn = ConnectionUtils.getConnection();
+            stat = conn.prepareStatement(queries.GETCOUNTBYIDCLIENT.getQ());
+            stat.setInt(1, codigoCliente);
+            rs = stat.executeQuery();
+            if (rs.next()) {
+                Cuenta c = convert(rs);
+                if (c.getCodigoCuenta() != -1) {
+                    result = true;
+                } else {
+                    result = false;
+                }
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(cuentaDAO.class.getName()).log(Level.SEVERE, null, ex);
+        } finally {
+            if (rs != null) {
+                try {
+                    rs.close();
+                } catch (SQLException ex) {
+                    Logger.getLogger(cuentaDAO.class.getName()).log(Level.SEVERE, null, ex);
+                }
+            }
+            if (stat != null) {
+                try {
+                    stat.close();
+                } catch (SQLException ex) {
+                    Logger.getLogger(cuentaDAO.class.getName()).log(Level.SEVERE, null, ex);
+                }
+            }
+        }
+        return result;
+    }
     
     
 }

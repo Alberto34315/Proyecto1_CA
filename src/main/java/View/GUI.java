@@ -5,12 +5,16 @@
  */
 package View;
 
+import DAO.OperarioDAO;
 import DAO.clienteDAO;
+import DAO.cuentaDAO;
 import Utils.Utilities;
 import controller.appController;
 import java.util.ArrayList;
 import java.util.List;
 import model.Cliente;
+import model.Cuenta;
+import model.Operario;
 
 /**
  *
@@ -33,7 +37,28 @@ public class GUI {
         
         switch (op1) {
             case 1:
-                    
+                    OperarioDAO operario1=new OperarioDAO();
+                    OperarioDAO operario2=new OperarioDAO();
+                    operario1.setPriority(5);
+                    operario2.setPriority(10);
+                    List<Operario> ol = operario1.getAll();
+                for (Operario op : ol) {
+                    if (op.getLogin().equals("Operario1") && op.getPassword().equals("Operario1")){
+                        operario1 = new OperarioDAO(op);
+                        operario1.run();
+                    }
+                }
+                
+                
+                for (Operario op : ol) {
+                    if (op.getLogin().equals("Operario2") && op.getPassword().equals("Operario2Operario2")){
+                        operario2 = new OperarioDAO(op);
+                        operario2.run();
+                    }
+                }
+             cuentaDAO cDAO=new cuentaDAO();
+             cDAO.remove(cDAO.getCountByClient(21));
+             cDAO.remove(cDAO.getCountByClient(22));
                 break;
 
             case 2:
@@ -50,8 +75,8 @@ public class GUI {
                     }
                 }
                 
-                List<Cliente> Cl2 = cliente2.getAll();
-                for (Cliente cliente : Cl2) {
+                
+                for (Cliente cliente : Cl) {
                     if (cliente.getLogin().equals("Usuario1b") && cliente.getPassword().equals("Usuario1b")){
                         cliente2 = new clienteDAO(cliente);
                         cliente2.run();
@@ -61,7 +86,54 @@ public class GUI {
                 break;
 
             case 3:
-
+               /* 
+                clienteDAO cliente1a = new clienteDAO();
+                clienteDAO cliente1b = new clienteDAO();
+                clienteDAO cliente1c = new clienteDAO();
+                clienteDAO cliente1d = new clienteDAO();
+                clienteDAO cliente1e = new clienteDAO();
+                cliente1a.setPriority(5);
+                cliente1b.setPriority(6);
+                cliente1c.setPriority(7);
+                cliente1d.setPriority(8);
+                cliente1e.setPriority(10);
+                
+                List<Cliente> Cl1a = cliente1a.getAll();
+                for (Cliente cliente : Cl1a) {
+                    if (cliente.getLogin().equals("Usuario1a") && cliente.getPassword().equals("Usuario1a")){
+                        cliente1a = new clienteDAO(cliente);
+                        cliente1a.run();
+                    }
+                }
+                
+                
+                for (Cliente cliente : Cl1a) {
+                    if (cliente.getLogin().equals("Usuario1b") && cliente.getPassword().equals("Usuario1b")){
+                        cliente1b = new clienteDAO(cliente);
+                        cliente1b.run();
+                    }
+                }
+                
+                for (Cliente cliente : Cl1a) {
+                    if (cliente.getLogin().equals("Usuario1b") && cliente.getPassword().equals("Usuario1b")){
+                        cliente1c = new clienteDAO(cliente);
+                        cliente1c.run();
+                    }
+                }
+                
+                for (Cliente cliente : Cl1a) {
+                    if (cliente.getLogin().equals("Usuario1b") && cliente.getPassword().equals("Usuario1b")){
+                        cliente1d = new clienteDAO(cliente);
+                        cliente1d.run();
+                    }
+                }
+                
+                for (Cliente cliente : Cl1a) {
+                    if (cliente.getLogin().equals("Usuario1b") && cliente.getPassword().equals("Usuario1b")){
+                        cliente1e = new clienteDAO(cliente);
+                        cliente1e.run();
+                    }
+                }*/
                 break;
 
             case 4:
@@ -69,7 +141,15 @@ public class GUI {
                 break;
 
             case 5:
-
+                    cuentaDAO cuentas=new cuentaDAO();
+                    for (Cuenta cuenta : cuentas.getAll()) {
+                        System.out.println(cuenta);
+                        for (Cliente cliente : cuentas.getListClienteCount(cuenta.getCodigoCuenta())) {
+                            cliente.setCuenta(cuenta);
+                            System.out.println("--"+cliente);
+                        }
+                        System.out.println("-----------------------------------------------------------------------------------------------------------------------------");
+                }
                 break;
             case 6:
                 Utilities.P("Saliendo de la aplicación.");

@@ -11,6 +11,8 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.sql.Timestamp;
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Level;
@@ -22,13 +24,14 @@ import model.Operario;
  * @author espin
  */
 public class OperarioDAO extends Operario {
+
     enum queries {
         INSERT("INSERT INTO operarios (ID, Nombre, Apellidos, Login, Password) VALUES (NULL,?,?,?,?)"),
-        UPDATE("UPDATE operario SET Nombre=?,Apellidos=?,Login=?,Password=? WHERE codigoOperario=?"),
-        DELETE("DELETE FROM operario WHERE codigoOperario=?"),
-        DELETEALL("DELETE FROM operario INNER JOIN WHERE codigoOperario=?"),
-        GETBYID("SELECT codigoOperario,Nombre,Apellidos,Login,Password FROM operario Where codigoOperario=?"),
-        GETALL("SELECT  codigoOperario,Nombre,Apellidos,Login,Password FROM operario");
+        UPDATE("UPDATE operarios SET Nombre=?,Apellidos=?,Login=?,Password=? WHERE codigoOperario=?"),
+        DELETE("DELETE FROM operarios WHERE codigoOperario=?"),
+        DELETEALL("DELETE FROM operarios INNER JOIN WHERE codigoOperario=?"),
+        GETBYID("SELECT codigoOperario,Nombre,Apellidos,Login,Password FROM operarios Where codigoOperario=?"),
+        GETALL("SELECT  codigoOperario,Nombre,Apellidos,Login,Password FROM operarios");
 
         private String q;
 
@@ -43,20 +46,19 @@ public class OperarioDAO extends Operario {
     Connection conn;
 
     public OperarioDAO(int codigoOperario, String nombre, String apellidos, String login, String password) {
-        super(codigoOperario, nombre, apellidos, login, password);        
+        super(codigoOperario, nombre, apellidos, login, password);
     }
 
     public OperarioDAO() {
         super();
-        
+
     }
 
     public OperarioDAO(Operario c) {
         super(c.getCodigoOperario(), c.getNombre(), c.getApellidos(), c.getLogin(), c.getPassword());
-        
+
     }
 
-    
     public void insert(Operario a) {
         int result = -1;
         try {
@@ -69,9 +71,7 @@ public class OperarioDAO extends Operario {
                 stat.setString(1, a.getApellidos());
                 stat.setString(1, a.getLogin());
                 stat.setString(1, a.getPassword());
-                
-              
-                
+
                 stat.executeUpdate();
                 try ( ResultSet generatedKeys = stat.getGeneratedKeys()) {
                     if (generatedKeys.next()) {
@@ -86,7 +86,6 @@ public class OperarioDAO extends Operario {
 
     }
 
-    
     public void edit(Operario a) {
         try {
             conn = ConnectionUtils.getConnection();
@@ -104,7 +103,6 @@ public class OperarioDAO extends Operario {
 
     }
 
-    
     public void remove(Operario a) {
         PreparedStatement ps = null;
         try {
@@ -136,20 +134,17 @@ public class OperarioDAO extends Operario {
      * @throws SQLException lanza una SQLException
      */
     protected Operario convert(ResultSet rs) throws SQLException {
-        
+
         int id = rs.getInt("codigoOperario");
         String nombre = rs.getString("Nombre");
         String apellidos = rs.getString("Apellidos");
         String login = rs.getString("Login");
         String password = rs.getString("Password");
-        
-        
+
         Operario c = new Operario(id, nombre, apellidos, login, password);
         return c;
     }
 
-    
-   
     public List<Operario> getAll() {
         PreparedStatement stat = null;
         ResultSet rs = null;
@@ -220,8 +215,10 @@ public class OperarioDAO extends Operario {
         }
         return c;
     }
+
     /**
      * Metodo que comprueba si existe el ID en la tabla
+     *
      * @param id recibe un entero
      * @return devuelve un boolean, si existe devuelve true y false si no
      */
@@ -236,7 +233,7 @@ public class OperarioDAO extends Operario {
             rs = stat.executeQuery();
             if (rs.next()) {
                 Operario c = convert(rs);
-                if (c.getCodigoOperario()!= -1) {
+                if (c.getCodigoOperario() != -1) {
                     result = true;
                 } else {
                     result = false;
@@ -262,6 +259,23 @@ public class OperarioDAO extends Operario {
         }
         return result;
     }
-    
-    
+
+    public void run() {
+        cuentaDAO cDAO = new cuentaDAO();
+        clienteDAO clDAO = new clienteDAO();
+        cDAO.setSaldo(1000);
+        cDAO.insert(cDAO);
+        System.out.println("Creando cuenta..." + cDAO.getByID(cDAO.getCodigoCuenta()));
+        System.out.println(cDAO.searchCountByClient(21));
+        if (!cDAO.searchCountByClient(21) ) {
+            cDAO.insertClienC(21, cDAO.getCodigoCuenta(), Timestamp.valueOf(LocalDateTime.now()));
+            cDAO.insertClient(clDAO.getByID(21));
+            System.out.println("Cuenta: " + cDAO);
+        } else {
+            cDAO.insertClienC(22, cDAO.getCodigoCuenta(), Timestamp.valueOf(LocalDateTime.now()));
+            cDAO.insertClient(clDAO.getByID(22));
+            System.out.println("Cuenta: " + cDAO);
+        }
+        
+    }
 }
