@@ -40,12 +40,13 @@ public class GUI {
                 
                 clienteDAO cliente1 = new clienteDAO();
                 clienteDAO cliente2 = new clienteDAO();
-                
+                cliente1.setPriority(5);
+                cliente2.setPriority(10);
                 List<Cliente> Cl = cliente1.getAll();
                 for (Cliente cliente : Cl) {
                     if (cliente.getLogin().equals("Usuario1a") && cliente.getPassword().equals("Usuario1a")){
                         cliente1 = new clienteDAO(cliente);
-                        cliente1.start();
+                        cliente1.run();
                     }
                 }
                 
@@ -53,7 +54,7 @@ public class GUI {
                 for (Cliente cliente : Cl2) {
                     if (cliente.getLogin().equals("Usuario1b") && cliente.getPassword().equals("Usuario1b")){
                         cliente2 = new clienteDAO(cliente);
-                        cliente2.start();
+                        cliente2.run();
                     }
                 }
         

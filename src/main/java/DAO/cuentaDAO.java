@@ -87,7 +87,7 @@ public class cuentaDAO extends Cuenta {
             stat.setTimestamp(3, (java.sql.Timestamp) a.getFechaHoraUM());
              stat.setInt(4, a.getCodigoCuenta());
             stat.executeUpdate();
-
+            
         } catch (SQLException ex) {
             Logger.getLogger(cuentaDAO.class.getName()).log(Level.SEVERE, null, ex);
         }
