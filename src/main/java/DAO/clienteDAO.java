@@ -263,10 +263,10 @@ public class clienteDAO extends Cliente {
     
     
     public void run() {
-        System.out.println(this.op);
+        cuentaDAO Cuenta = new cuentaDAO();
         switch (this.op) {
             case 2:
-                cuentaDAO Cuenta = new cuentaDAO();
+                
                 Cuenta cu = Cuenta.getCountByClient(this.codigoCliente);
                 System.out.println("Saldo de la cuenta: " + cu.getSaldo());
                 cu.setSaldo(cu.getSaldo() + 200);
@@ -274,7 +274,17 @@ public class clienteDAO extends Cliente {
                 System.out.println("Saldo actualizado: " + cu.getSaldo());
                 break;
             case 3:
-
+                Cuenta cue= Cuenta.getCountByClient(this.codigoCliente);
+                System.out.println("Saldo de la cuenta: " + cue.getSaldo());
+                if(cue.getSaldo()>0){
+                    float retirar=(float) (Math.random()*(cue.getSaldo()+1));
+                    cue.setSaldo((float) (cue.getSaldo()- retirar));
+                    Cuenta.edit(cue);
+                    System.out.println("Total retirado: " + retirar );
+                    System.out.println("Operación realizada con exito");
+                }else{
+                    System.out.println("No hay saldo en la cuenta");
+                }
                 break;
             case 4:
 
