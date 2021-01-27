@@ -264,17 +264,15 @@ public class clienteDAO extends Cliente {
     
     public void run() {
         cuentaDAO Cuenta = new cuentaDAO();
+        Cuenta cue= Cuenta.getCountByClient(this.codigoCliente);
         switch (this.op) {
             case 2:
-                
-                Cuenta cu = Cuenta.getCountByClient(this.codigoCliente);
-                System.out.println("Saldo de la cuenta: " + cu.getSaldo());
-                cu.setSaldo(cu.getSaldo() + 200);
-                Cuenta.edit(cu);
-                System.out.println("Saldo actualizado: " + cu.getSaldo());
+                System.out.println("Saldo de la cuenta: " + cue.getSaldo());
+                cue.setSaldo(cue.getSaldo() + 200);
+                Cuenta.edit(cue);
+                System.out.println("Saldo actualizado: " + cue.getSaldo());
                 break;
             case 3:
-                Cuenta cue= Cuenta.getCountByClient(this.codigoCliente);
                 System.out.println("Saldo de la cuenta: " + cue.getSaldo());
                 if(cue.getSaldo()>0){
                     int retirar= (int) (Math.random()*(cue.getSaldo()+1));
@@ -287,7 +285,17 @@ public class clienteDAO extends Cliente {
                 }
                 break;
             case 4:
-
+                System.out.println("Saldo de la cuenta: " + cue.getSaldo());
+                int sal = (int) cue.getSaldo();
+                if(cue.getSaldo()>(sal-1500)){
+                    cue.setSaldo((int) (cue.getSaldo()- 500));
+                    Cuenta.edit(cue);
+                    System.out.println("Operación realizada con exito");
+                }else{
+                    cue.setSaldo((int) (cue.getSaldo()+ 200));
+                    Cuenta.edit(cue);
+                    System.out.println("Operación realizada con exito");
+                }
                 break;
         }
         

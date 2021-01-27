@@ -149,7 +149,65 @@ public class GUI {
                 break;
 
             case 4:
-                 
+                clienteDAO cliente1aW = new clienteDAO();
+                clienteDAO cliente1bW = new clienteDAO();
+                clienteDAO cliente1cW = new clienteDAO();
+                clienteDAO cliente1dW = new clienteDAO();
+                clienteDAO cliente1eW = new clienteDAO();
+                cliente1aW.setPriority(5);
+                cliente1bW.setPriority(6);
+                cliente1cW.setPriority(7);
+                cliente1dW.setPriority(8);
+                cliente1eW.setPriority(10);
+                
+                List<Cliente> Cl1aW = cliente1aW.getAll();
+                for (Cliente cliente : Cl1aW) {
+                    if (cliente.getLogin().equals("Usuario1a") && cliente.getPassword().equals("Usuario1a")){
+                        cliente1a = new clienteDAO(cliente,3);
+                        System.out.println(cliente1a);
+                        cliente1a.run();
+                        System.out.println("------------------------------------------------------------------------------------------");
+                    }
+                }
+                
+                
+                for (Cliente cliente : Cl1aW) {
+                    if (cliente.getLogin().equals("Usuario1b") && cliente.getPassword().equals("Usuario1b")){
+                        cliente1b = new clienteDAO(cliente,3);
+                        System.out.println(cliente1b);
+                        cliente1b.run();
+                        System.out.println("------------------------------------------------------------------------------------------");
+                    }
+                }
+                
+                for (Cliente cliente : Cl1aW) {
+                    if (cliente.getLogin().equals("Usuario1c") && cliente.getPassword().equals("Usuario1c")){
+                        cliente1c = new clienteDAO(cliente,3);
+                        System.out.println(cliente1c);
+                        cliente1c.run();
+                        System.out.println("------------------------------------------------------------------------------------------");
+                    }
+                }
+                
+                for (Cliente cliente : Cl1aW) {
+                    if (cliente.getLogin().equals("Usuario1d") && cliente.getPassword().equals("Usuario1d")){
+                        cliente1d = new clienteDAO(cliente,3);
+                        System.out.println(cliente1d);
+                        cliente1d.run();
+                        System.out.println("------------------------------------------------------------------------------------------");
+                    }
+                }
+                
+                for (Cliente cliente : Cl1aW) {
+                    if (cliente.getLogin().equals("Usuario1e") && cliente.getPassword().equals("Usuario1e")){
+                        cliente1e = new clienteDAO(cliente,3);
+                        System.out.println(cliente1e);
+                        cliente1e.run();
+                        System.out.println("------------------------------------------------------------------------------------------");
+                    }
+                }
+                cuentaDAO cW=new cuentaDAO();
+                System.out.println("Saldo Actual: "+cW.getByID(11).getSaldo());
                 break;
 
             case 5:
