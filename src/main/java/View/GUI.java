@@ -160,10 +160,12 @@ public class GUI {
                 cliente1dW.setPriority(8);
                 cliente1eW.setPriority(10);
                 
+                cuentaDAO cW=new cuentaDAO();
+                
                 List<Cliente> Cl1aW = cliente1aW.getAll();
                 for (Cliente cliente : Cl1aW) {
                     if (cliente.getLogin().equals("Usuario1a") && cliente.getPassword().equals("Usuario1a")){
-                        cliente1a = new clienteDAO(cliente,3);
+                        cliente1a = new clienteDAO(cliente,4,1);
                         System.out.println(cliente1a);
                         cliente1a.run();
                         System.out.println("------------------------------------------------------------------------------------------");
@@ -173,7 +175,7 @@ public class GUI {
                 
                 for (Cliente cliente : Cl1aW) {
                     if (cliente.getLogin().equals("Usuario1b") && cliente.getPassword().equals("Usuario1b")){
-                        cliente1b = new clienteDAO(cliente,3);
+                        cliente1b = new clienteDAO(cliente,4,1);
                         System.out.println(cliente1b);
                         cliente1b.run();
                         System.out.println("------------------------------------------------------------------------------------------");
@@ -182,7 +184,7 @@ public class GUI {
                 
                 for (Cliente cliente : Cl1aW) {
                     if (cliente.getLogin().equals("Usuario1c") && cliente.getPassword().equals("Usuario1c")){
-                        cliente1c = new clienteDAO(cliente,3);
+                        cliente1c = new clienteDAO(cliente,4,1);
                         System.out.println(cliente1c);
                         cliente1c.run();
                         System.out.println("------------------------------------------------------------------------------------------");
@@ -191,7 +193,7 @@ public class GUI {
                 
                 for (Cliente cliente : Cl1aW) {
                     if (cliente.getLogin().equals("Usuario1d") && cliente.getPassword().equals("Usuario1d")){
-                        cliente1d = new clienteDAO(cliente,3);
+                        cliente1d = new clienteDAO(cliente,4,2);
                         System.out.println(cliente1d);
                         cliente1d.run();
                         System.out.println("------------------------------------------------------------------------------------------");
@@ -200,13 +202,13 @@ public class GUI {
                 
                 for (Cliente cliente : Cl1aW) {
                     if (cliente.getLogin().equals("Usuario1e") && cliente.getPassword().equals("Usuario1e")){
-                        cliente1e = new clienteDAO(cliente,3);
+                        cliente1e = new clienteDAO(cliente,4,2);
                         System.out.println(cliente1e);
                         cliente1e.run();
                         System.out.println("------------------------------------------------------------------------------------------");
                     }
                 }
-                cuentaDAO cW=new cuentaDAO();
+                
                 System.out.println("Saldo Actual: "+cW.getByID(11).getSaldo());
                 break;
 
