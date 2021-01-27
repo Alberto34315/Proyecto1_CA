@@ -277,8 +277,8 @@ public class clienteDAO extends Cliente {
                 Cuenta cue= Cuenta.getCountByClient(this.codigoCliente);
                 System.out.println("Saldo de la cuenta: " + cue.getSaldo());
                 if(cue.getSaldo()>0){
-                    float retirar=(float) (Math.random()*(cue.getSaldo()+1));
-                    cue.setSaldo((float) (cue.getSaldo()- retirar));
+                    int retirar= (int) (Math.random()*(cue.getSaldo()+1));
+                    cue.setSaldo((int) (cue.getSaldo()- retirar));
                     Cuenta.edit(cue);
                     System.out.println("Total retirado: " + retirar );
                     System.out.println("Operación realizada con exito");
