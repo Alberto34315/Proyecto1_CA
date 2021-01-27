@@ -70,7 +70,7 @@ public class GUI {
                 List<Cliente> Cl = cliente1.getAll();
                 for (Cliente cliente : Cl) {
                     if (cliente.getLogin().equals("Usuario1a") && cliente.getPassword().equals("Usuario1a")){
-                        cliente1 = new clienteDAO(cliente);
+                        cliente1 = new clienteDAO(cliente,2);
                         cliente1.run();
                     }
                 }
@@ -78,7 +78,7 @@ public class GUI {
                 
                 for (Cliente cliente : Cl) {
                     if (cliente.getLogin().equals("Usuario1b") && cliente.getPassword().equals("Usuario1b")){
-                        cliente2 = new clienteDAO(cliente);
+                        cliente2 = new clienteDAO(cliente,2);
                         cliente2.run();
                     }
                 }

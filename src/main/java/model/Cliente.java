@@ -18,6 +18,7 @@ public class Cliente extends Thread{
     protected String telefono;
     protected String email;
     protected Cuenta cuenta;
+    protected int op;
     public Cliente() {
     }
 
@@ -56,6 +57,31 @@ public class Cliente extends Thread{
         this.telefono = telefono;
         this.email = email;
         this.cuenta = cuenta;
+    }
+
+    public Cliente(int codigoCliente, String nombre, String apellidos, String dni, String login, String password, Date fecha_nac, String telefono, String email, int op) {
+        this.codigoCliente = codigoCliente;
+        this.nombre = nombre;
+        this.apellidos = apellidos;
+        this.dni = dni;
+        this.login = login;
+        this.password = password;
+        this.fecha_nac = fecha_nac;
+        this.telefono = telefono;
+        this.email = email;
+        this.op = op;
+    }
+
+    public Cliente(int op) {
+        this.op = op;
+    }
+
+    public int getOp() {
+        return op;
+    }
+
+    public void setOp(int op) {
+        this.op = op;
     }
 
     public int getCodigoCliente() {

@@ -31,7 +31,7 @@ public class clienteDAO extends Cliente {
         DELETE("DELETE FROM cliente WHERE codigoCliente=?"),
         GETBYID("SELECT codigoCliente, dni, login, nombre,apellidos,password,fecha_nac,telefono,email FROM cliente Where codigoCliente=?"),
         GETALL("SELECT codigoCliente, dni, login, nombre,apellidos,password,fecha_nac,telefono,email FROM cliente");
-   //   GETDISCOLISTBYID("SELECT d.ID, d.Nombre, d.Foto, d.fechap, d.IDArtista FROM disco as d INNER JOIN artista as art on art.ID=d.IDArtista WHERE art.ID=?");
+        //   GETDISCOLISTBYID("SELECT d.ID, d.Nombre, d.Foto, d.fechap, d.IDArtista FROM disco as d INNER JOIN artista as art on art.ID=d.IDArtista WHERE art.ID=?");
 
         private String q;
 
@@ -63,6 +63,10 @@ public class clienteDAO extends Cliente {
 
     public clienteDAO(Cliente c, Cuenta cuenta) {
         super(c.getCodigoCliente(), c.getNombre(), c.getApellidos(), c.getDni(), c.getLogin(), c.getPassword(), c.getFecha_nac(), c.getTelefono(), c.getEmail(), cuenta);
+    }
+
+    public clienteDAO(Cliente c,int op) {
+        super(c.getCodigoCliente(), c.getNombre(), c.getApellidos(), c.getDni(), c.getLogin(), c.getPassword(), c.getFecha_nac(), c.getTelefono(), c.getEmail(),op);
     }
 
     public void insert(Cliente a) {
@@ -114,8 +118,8 @@ public class clienteDAO extends Cliente {
             Logger.getLogger(clienteDAO.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
-    
-     public void remove(Cliente a) {
+
+    public void remove(Cliente a) {
         PreparedStatement ps = null;
         try {
             conn = ConnectionUtils.getConnection();
@@ -137,8 +141,8 @@ public class clienteDAO extends Cliente {
             }
         }
     }
-     
-      public Cliente convert(ResultSet rs) throws SQLException {
+
+    public Cliente convert(ResultSet rs) throws SQLException {
         int codigoCliente = rs.getInt("codigoCliente");
         String dni = rs.getString("dni");
         String login = rs.getString("login");
@@ -147,8 +151,8 @@ public class clienteDAO extends Cliente {
         String password = rs.getString("password");
         Date fecha_nac = rs.getDate("fecha_nac");
         String telefono = rs.getString("telefono");
-         String email = rs.getString("email");
-        Cliente a = new Cliente(codigoCliente, dni, login, nombre,apellidos,password,fecha_nac,telefono,email);
+        String email = rs.getString("email");
+        Cliente a = new Cliente(codigoCliente, dni, login, nombre, apellidos, password, fecha_nac, telefono, email);
         return a;
     }
 
@@ -216,6 +220,7 @@ public class clienteDAO extends Cliente {
         }
         return a;
     }
+
     public boolean searchByID(int id) {
         boolean result = false;
         PreparedStatement stat = null;
@@ -227,7 +232,7 @@ public class clienteDAO extends Cliente {
             rs = stat.executeQuery();
             if (rs.next()) {
                 Cliente c = convert(rs);
-                if (c.getCodigoCliente()!= -1) {
+                if (c.getCodigoCliente() != -1) {
                     result = true;
                 } else {
                     result = false;
@@ -253,14 +258,28 @@ public class clienteDAO extends Cliente {
         }
         return result;
     }
-    
+
     //_______________________________________________________________________________HILO
-    public void run(){
-        cuentaDAO Cuenta = new cuentaDAO();
-        Cuenta cu = Cuenta.getCountByClient(this.codigoCliente);
-        System.out.println("Saldo de la cuenta: " + cu.getSaldo());
-        cu.setSaldo(cu.getSaldo()+200);
-        Cuenta.edit(cu);
-        System.out.println("Saldo actualizado: " + cu.getSaldo());
+    
+    
+    public void run() {
+        System.out.println(this.op);
+        switch (this.op) {
+            case 2:
+                cuentaDAO Cuenta = new cuentaDAO();
+                Cuenta cu = Cuenta.getCountByClient(this.codigoCliente);
+                System.out.println("Saldo de la cuenta: " + cu.getSaldo());
+                cu.setSaldo(cu.getSaldo() + 200);
+                Cuenta.edit(cu);
+                System.out.println("Saldo actualizado: " + cu.getSaldo());
+                break;
+            case 3:
+
+                break;
+            case 4:
+
+                break;
+        }
+        
     }
 }
