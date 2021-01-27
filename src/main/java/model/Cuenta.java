@@ -90,7 +90,7 @@ public class Cuenta extends Thread{
 
     @Override
     public String toString() {
-        return "Cuenta{" + "codigoCuenta=" + codigoCuenta + ", saldo=" + saldo + ", fechaHoraC=" + fechaHoraC + ", fechaHoraUM=" + fechaHoraUM +/* ", ListClient=" + ListClient + ", fechaHoraUA=" + fechaHoraUA +*/ '}';
+        return "Cuenta{" + "codigoCuenta=" + codigoCuenta + ", saldo=" + saldo + ", fechaHoraC=" + fechaHoraC + ", fechaHoraUM=" + fechaHoraUM + ", ListClient=" + ListClient + ", fechaHoraUA=" + fechaHoraUA + '}';
     }
 
 

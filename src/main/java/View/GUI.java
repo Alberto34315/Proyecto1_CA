@@ -86,7 +86,7 @@ public class GUI {
                 break;
 
             case 3:
-               /* 
+               
                 clienteDAO cliente1a = new clienteDAO();
                 clienteDAO cliente1b = new clienteDAO();
                 clienteDAO cliente1c = new clienteDAO();
@@ -101,7 +101,7 @@ public class GUI {
                 List<Cliente> Cl1a = cliente1a.getAll();
                 for (Cliente cliente : Cl1a) {
                     if (cliente.getLogin().equals("Usuario1a") && cliente.getPassword().equals("Usuario1a")){
-                        cliente1a = new clienteDAO(cliente);
+                        cliente1a = new clienteDAO(cliente,3);
                         cliente1a.run();
                     }
                 }
@@ -109,31 +109,31 @@ public class GUI {
                 
                 for (Cliente cliente : Cl1a) {
                     if (cliente.getLogin().equals("Usuario1b") && cliente.getPassword().equals("Usuario1b")){
-                        cliente1b = new clienteDAO(cliente);
+                        cliente1b = new clienteDAO(cliente,3);
                         cliente1b.run();
                     }
                 }
                 
                 for (Cliente cliente : Cl1a) {
-                    if (cliente.getLogin().equals("Usuario1b") && cliente.getPassword().equals("Usuario1b")){
-                        cliente1c = new clienteDAO(cliente);
+                    if (cliente.getLogin().equals("Usuario1c") && cliente.getPassword().equals("Usuario1c")){
+                        cliente1c = new clienteDAO(cliente,3);
                         cliente1c.run();
                     }
                 }
                 
                 for (Cliente cliente : Cl1a) {
-                    if (cliente.getLogin().equals("Usuario1b") && cliente.getPassword().equals("Usuario1b")){
-                        cliente1d = new clienteDAO(cliente);
+                    if (cliente.getLogin().equals("Usuario1d") && cliente.getPassword().equals("Usuario1d")){
+                        cliente1d = new clienteDAO(cliente,3);
                         cliente1d.run();
                     }
                 }
                 
                 for (Cliente cliente : Cl1a) {
-                    if (cliente.getLogin().equals("Usuario1b") && cliente.getPassword().equals("Usuario1b")){
-                        cliente1e = new clienteDAO(cliente);
+                    if (cliente.getLogin().equals("Usuario1e") && cliente.getPassword().equals("Usuario1e")){
+                        cliente1e = new clienteDAO(cliente,3);
                         cliente1e.run();
                     }
-                }*/
+                }
                 break;
 
             case 4:
