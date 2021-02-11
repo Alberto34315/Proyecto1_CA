@@ -10,7 +10,9 @@ public class Operario extends Thread{
     protected String apellidos;
     protected String login;
     protected String password;
-
+    protected Cuenta cuenta;
+    protected Cliente cliente;
+    
     public Operario() {
         this(-1,"","","","");
     }
@@ -28,6 +30,32 @@ public class Operario extends Thread{
         this.apellidos = apellidos;
         this.login = login;
         this.password = password;
+    }
+
+    public Operario(int codigoOperario, String nombre, String apellidos, String login, String password, Cuenta cuenta, Cliente cliente) {
+        this.codigoOperario = codigoOperario;
+        this.nombre = nombre;
+        this.apellidos = apellidos;
+        this.login = login;
+        this.password = password;
+        this.cuenta = cuenta;
+        this.cliente = cliente;
+    }
+
+    public Cuenta getCuenta() {
+        return cuenta;
+    }
+
+    public void setCuenta(Cuenta cuenta) {
+        this.cuenta = cuenta;
+    }
+
+    public Cliente getCliente() {
+        return cliente;
+    }
+
+    public void setCliente(Cliente cliente) {
+        this.cliente = cliente;
     }
     
     

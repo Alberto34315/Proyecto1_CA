@@ -17,6 +17,8 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import model.Cliente;
+import model.Cuenta;
 import model.Operario;
 
 /**
@@ -58,7 +60,10 @@ public class OperarioDAO extends Operario {
         super(c.getCodigoOperario(), c.getNombre(), c.getApellidos(), c.getLogin(), c.getPassword());
 
     }
+  public OperarioDAO(Operario c,Cuenta cuenta, Cliente cliente) {
+        super(c.getCodigoOperario(), c.getNombre(), c.getApellidos(), c.getLogin(), c.getPassword(),cuenta,cliente);
 
+    }
     public void insert(Operario a) {
         int result = -1;
         try {
@@ -259,23 +264,23 @@ public class OperarioDAO extends Operario {
         }
         return result;
     }
-
-    public void run() {
+    
+  public synchronized void crearCuenta() {
         cuentaDAO cDAO = new cuentaDAO();
         clienteDAO clDAO = new clienteDAO();
-        cDAO.setSaldo(1000);
-        cDAO.insert(cDAO);
-        System.out.println("Creando cuenta..." + cDAO.getByID(cDAO.getCodigoCuenta()));
-        System.out.println(cDAO.searchCountByClient(21));
-        if (!cDAO.searchCountByClient(21) ) {
-            cDAO.insertClienC(21, cDAO.getCodigoCuenta(), Timestamp.valueOf(LocalDateTime.now()));
-            cDAO.insertClient(clDAO.getByID(21));
+        int idCuenta=cDAO.insert(cuenta);        
+        cDAO.setSaldo(cuenta.getSaldo());
+        cDAO.setFechaHoraC(cuenta.getFechaHoraC());
+        cDAO.setFechaHoraUM(cuenta.getFechaHoraC());
+        System.out.println("Creando cuenta..." + cDAO.getByID(idCuenta));
+            cDAO.insertClienC(cliente.getCodigoCliente(), idCuenta, Timestamp.valueOf(LocalDateTime.now()));
+            cDAO.insertClient(clDAO.getByID(cliente.getCodigoCliente()));
+       
             System.out.println("Cuenta: " + cDAO);
-        } else {
-            cDAO.insertClienC(22, cDAO.getCodigoCuenta(), Timestamp.valueOf(LocalDateTime.now()));
-            cDAO.insertClient(clDAO.getByID(22));
-            System.out.println("Cuenta: " + cDAO);
-        }
-        
+     
+    }
+  
+    public void run() {
+        crearCuenta();
     }
 }

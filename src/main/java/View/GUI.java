@@ -10,6 +10,8 @@ import DAO.clienteDAO;
 import DAO.cuentaDAO;
 import Utils.Utilities;
 import controller.appController;
+import java.sql.Timestamp;
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 import model.Cliente;
@@ -21,8 +23,6 @@ import model.Operario;
  * @author Alberto343
  */
 public class GUI {
-
-    
 
     public static void principal() {
         int opcion = 0;
@@ -40,45 +40,46 @@ public class GUI {
             case 1:
                 OperarioDAO operario1 = new OperarioDAO();
                 OperarioDAO operario2 = new OperarioDAO();
-                operario1.setPriority(5);
-                operario2.setPriority(10);
+                cuentaDAO cDAO = new cuentaDAO();
+
+                clienteDAO clDAO = new clienteDAO();
                 List<Operario> ol = operario1.getAll();
                 for (Operario op : ol) {
                     if (op.getLogin().equals("Operario1") && op.getPassword().equals("Operario1")) {
-                        operario1 = new OperarioDAO(op);
-                        operario1.run();
+                        operario1 = new OperarioDAO(op, new Cuenta(1250, Timestamp.valueOf(LocalDateTime.now()), Timestamp.valueOf(LocalDateTime.now())), clDAO.getByID(21));
+                        operario1.start();
                     }
                 }
 
                 for (Operario op : ol) {
                     if (op.getLogin().equals("Operario2") && op.getPassword().equals("Operario2Operario2")) {
-                        operario2 = new OperarioDAO(op);
-                        operario2.run();
+                        operario2 = new OperarioDAO(op, new Cuenta(1200, Timestamp.valueOf(LocalDateTime.now()), Timestamp.valueOf(LocalDateTime.now())), clDAO.getByID(22));
+                        operario2.start();
                     }
                 }
-                cuentaDAO cDAO = new cuentaDAO();
-                cDAO.remove(cDAO.getCountByClient(21));
-                cDAO.remove(cDAO.getCountByClient(22));
+
                 break;
 
             case 2:
-
+                cuentaDAO Cuenta = new cuentaDAO();
                 clienteDAO cliente1 = new clienteDAO();
                 clienteDAO cliente2 = new clienteDAO();
-                cliente1.setPriority(5);
-                cliente2.setPriority(10);
+                Cuenta cue = Cuenta.getByID(11);
+              /*  cliente1.setPriority(7);
+                cliente2.setPriority(10);*/
                 List<Cliente> Cl = cliente1.getAll();
                 for (Cliente cliente : Cl) {
                     if (cliente.getLogin().equals("Usuario1a") && cliente.getPassword().equals("Usuario1a")) {
-                        cliente1 = new clienteDAO(cliente, 2);
-                        cliente1.run();
+                        cliente1 = new clienteDAO(cliente, cue, 2);
+
+                        cliente1.start();
                     }
                 }
 
                 for (Cliente cliente : Cl) {
                     if (cliente.getLogin().equals("Usuario1b") && cliente.getPassword().equals("Usuario1b")) {
-                        cliente2 = new clienteDAO(cliente, 2);
-                        cliente2.run();
+                        cliente2 = new clienteDAO(cliente, cue, 2);
+                        cliente2.start();
                     }
                 }
 

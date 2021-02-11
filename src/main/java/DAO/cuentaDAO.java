@@ -43,7 +43,9 @@ public class cuentaDAO extends Cuenta {
     public cuentaDAO(int codigoCuenta, float saldo, Timestamp fechaHoraC, Timestamp fechaHoraUM) {
         super(codigoCuenta, saldo, fechaHoraC, fechaHoraUM);
     }
-
+ public cuentaDAO( float saldo, Timestamp fechaHoraC, Timestamp fechaHoraUM) {
+        super(saldo, fechaHoraC, fechaHoraUM);
+    }
     public cuentaDAO() {
         super();
     }
@@ -58,7 +60,7 @@ public class cuentaDAO extends Cuenta {
         this.ListClient=new ArrayList<>();
         this.ListClient.add(c);
     }
-    public void insert(Cuenta a) {
+    public int insert(Cuenta a) {
         int result = -1;
         try {
             conn = ConnectionUtils.getConnection();
@@ -81,6 +83,7 @@ public class cuentaDAO extends Cuenta {
         } catch (SQLException ex) {
             Logger.getLogger(cuentaDAO.class.getName()).log(Level.SEVERE, null, ex);
         }
+        return this.codigoCuenta;
     }
     
     public void edit(Cuenta a) {

@@ -73,6 +73,19 @@ public class Cliente extends Thread{
         this.email = email;
         this.cuenta = cuenta;
     }
+    public Cliente(int codigoCliente, String nombre, String apellidos, String dni, String login, String password, Date fecha_nac, String telefono, String email, Cuenta cuenta,int op) {
+        this.codigoCliente = codigoCliente;
+        this.nombre = nombre;
+        this.apellidos = apellidos;
+        this.dni = dni;
+        this.login = login;
+        this.password = password;
+        this.fecha_nac = fecha_nac;
+        this.telefono = telefono;
+        this.email = email;
+        this.cuenta = cuenta;
+        this.op=op;
+    }
 
     public Cliente(int codigoCliente, String nombre, String apellidos, String dni, String login, String password, Date fecha_nac, String telefono, String email, int op) {
         this.codigoCliente = codigoCliente;
