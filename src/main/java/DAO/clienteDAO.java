@@ -343,7 +343,7 @@ public class clienteDAO extends Cliente {
                 retirarDinero(Cuenta);
                 break;
             case 4:
-                case4(Cuenta)
+                case4(Cuenta);
                 
                 break;
         }
