@@ -35,7 +35,9 @@ public class GUI {
     }
 
     private static void ControladorPrimerMenu(int op1) {
-
+        cuentaDAO Cuenta = new cuentaDAO();
+        Cuenta cue = Cuenta.getByID(11);
+        
         switch (op1) {
             case 1:
                 OperarioDAO operario1 = new OperarioDAO();
@@ -61,10 +63,9 @@ public class GUI {
                 break;
 
             case 2:
-                cuentaDAO Cuenta = new cuentaDAO();
                 clienteDAO cliente1 = new clienteDAO();
                 clienteDAO cliente2 = new clienteDAO();
-                Cuenta cue = Cuenta.getByID(11);
+                
               /*  cliente1.setPriority(7);
                 cliente2.setPriority(10);*/
                 List<Cliente> Cl = cliente1.getAll();
@@ -86,22 +87,18 @@ public class GUI {
                 break;
 
             case 3:
-
+                
                 clienteDAO cliente1a = new clienteDAO();
                 clienteDAO cliente1b = new clienteDAO();
                 clienteDAO cliente1c = new clienteDAO();
                 clienteDAO cliente1d = new clienteDAO();
                 clienteDAO cliente1e = new clienteDAO();
-               /* cliente1a.setPriority(5);
-                cliente1b.setPriority(6);
-                cliente1c.setPriority(7);
-                cliente1d.setPriority(8);
-                cliente1e.setPriority(10);*/
+                
 
                 List<Cliente> Cl1a = cliente1a.getAll();
                 for (Cliente cliente : Cl1a) {
                     if (cliente.getLogin().equals("Usuario1a") && cliente.getPassword().equals("Usuario1a")) {
-                        cliente1a = new clienteDAO(cliente, 3);
+                        cliente1a = new clienteDAO(cliente, cue, 3);
                         System.out.println(cliente1a);
                         cliente1a.start();
                         System.out.println("------------------------------------------------------------------------------------------");
@@ -110,7 +107,7 @@ public class GUI {
 
                 for (Cliente cliente : Cl1a) {
                     if (cliente.getLogin().equals("Usuario1b") && cliente.getPassword().equals("Usuario1b")) {
-                        cliente1b = new clienteDAO(cliente, 3);
+                        cliente1b = new clienteDAO(cliente, cue, 3);
                         System.out.println(cliente1b);
                         cliente1b.start();
                         System.out.println("------------------------------------------------------------------------------------------");
@@ -119,7 +116,7 @@ public class GUI {
 
                 for (Cliente cliente : Cl1a) {
                     if (cliente.getLogin().equals("Usuario1c") && cliente.getPassword().equals("Usuario1c")) {
-                        cliente1c = new clienteDAO(cliente, 3);
+                        cliente1c = new clienteDAO(cliente, cue, 3);
                         System.out.println(cliente1c);
                         cliente1c.start();
                         System.out.println("------------------------------------------------------------------------------------------");
@@ -128,7 +125,7 @@ public class GUI {
 
                 for (Cliente cliente : Cl1a) {
                     if (cliente.getLogin().equals("Usuario1d") && cliente.getPassword().equals("Usuario1d")) {
-                        cliente1d = new clienteDAO(cliente, 3);
+                        cliente1d = new clienteDAO(cliente, cue, 3);
                         System.out.println(cliente1d);
                         cliente1d.start();
                         System.out.println("------------------------------------------------------------------------------------------");
@@ -137,7 +134,7 @@ public class GUI {
 
                 for (Cliente cliente : Cl1a) {
                     if (cliente.getLogin().equals("Usuario1e") && cliente.getPassword().equals("Usuario1e")) {
-                        cliente1e = new clienteDAO(cliente, 3);
+                        cliente1e = new clienteDAO(cliente, cue, 3);
                         System.out.println(cliente1e);
                         cliente1e.start();
                         System.out.println("------------------------------------------------------------------------------------------");

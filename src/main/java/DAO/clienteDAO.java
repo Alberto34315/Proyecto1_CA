@@ -280,13 +280,29 @@ public class clienteDAO extends Cliente {
         }
 
         hayCliente = true;
-        System.out.println("Cliente: "+this.codigoCliente+" Saldo de la cuenta: " + cue.getSaldo());
+        System.out.println("Cliente: " + this.codigoCliente + " Saldo de la cuenta: " + cue.getSaldo());
         cue.setSaldo(cue.getSaldo() + 200);
-        
-        System.out.println("Cliente: "+this.codigoCliente+" Saldo actualizado: " + cue.getSaldo());
+
+        System.out.println("Cliente: " + this.codigoCliente + " Saldo actualizado: " + cue.getSaldo());
         Cuenta.edit(cue);
         notifyAll();
     }
+
+    //_____________________________________________________________________________________
+    public synchronized void retirarDinero(cuentaDAO cue) {
+
+        System.out.println("Saldo de la cuenta: " + this.cuenta.getSaldo());
+        if (this.cuenta.getSaldo() > 0) {
+            int retirar = (int) (Math.random() * (this.cuenta.getSaldo() + 1));
+            this.cuenta.setSaldo((int) (this.cuenta.getSaldo() - retirar));
+            cue.edit(this.cuenta);
+            System.out.println("Total retirado: " + retirar);
+            System.out.println("Operación realizada con exito");
+        } else {
+            System.out.println("No hay saldo en la cuenta");
+        }
+    }
+    //_____________________________________________________________________________________
 
     public void run() {
         cuentaDAO Cuenta = new cuentaDAO();
@@ -296,16 +312,8 @@ public class clienteDAO extends Cliente {
                 ingresarOp2(Cuenta, this.cuenta);
                 break;
             case 3:
-                System.out.println("Saldo de la cuenta: " + this.cuenta.getSaldo());
-                if (this.cuenta.getSaldo() > 0) {
-                    int retirar = (int) (Math.random() * (this.cuenta.getSaldo() + 1));
-                    this.cuenta.setSaldo((int) (this.cuenta.getSaldo() - retirar));
-                    Cuenta.edit(this.cuenta);
-                    System.out.println("Total retirado: " + retirar);
-                    System.out.println("Operación realizada con exito");
-                } else {
-                    System.out.println("No hay saldo en la cuenta");
-                }
+                
+                retirarDinero(Cuenta);
                 break;
             case 4:
                 System.out.println("Saldo de la cuenta: " + this.cuenta.getSaldo());
