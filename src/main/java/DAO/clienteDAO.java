@@ -76,8 +76,8 @@ public class clienteDAO extends Cliente {
         super(c.getCodigoCliente(), c.getNombre(), c.getApellidos(), c.getDni(), c.getLogin(), c.getPassword(), c.getFecha_nac(), c.getTelefono(), c.getEmail(), op);
     }
 
-    public clienteDAO(Cliente c, int op, int op4) {
-        super(c.getCodigoCliente(), c.getNombre(), c.getApellidos(), c.getDni(), c.getLogin(), c.getPassword(), c.getFecha_nac(), c.getTelefono(), c.getEmail(), op, op4);
+    public clienteDAO(Cliente c, Cuenta cuenta,int op, int op4) {
+        super(c.getCodigoCliente(), c.getNombre(), c.getApellidos(), c.getDni(), c.getLogin(), c.getPassword(), c.getFecha_nac(), c.getTelefono(), c.getEmail(),cuenta, op, op4);
     }
 
     public void insert(Cliente a) {
@@ -291,9 +291,7 @@ public class clienteDAO extends Cliente {
     //_____________________________________________________________________________________
     public synchronized void retirarDinero(cuentaDAO cue) {
         if (this.cuenta.getSaldo() > 0) {
-
-            System.out.println(this);
-            System.out.println("Saldo de la cuenta: " + this.cuenta.getSaldo());
+            System.out.println(this+"\nSaldo de la cuenta: " + this.cuenta.getSaldo());
             int retirar = (int) (Math.random() * (this.cuenta.getSaldo() + 1));
             this.cuenta.setSaldo((int) (this.cuenta.getSaldo() - retirar));
             System.out.println("Total retirado: " + retirar);
@@ -308,22 +306,22 @@ public class clienteDAO extends Cliente {
     
     
      public synchronized void case4 (cuentaDAO Cuenta){
-         System.out.println("Saldo de la cuenta: " + this.cuenta.getSaldo());
+         System.out.println("CodigoCliente: "+this.codigoCliente+", Saldo de la cuenta: " + this.cuenta.getSaldo());
                 if (this.op4 == 1) {
                     if (this.cuenta.getSaldo() < 500) {
                         System.out.println("No se puede realizar la operación");
                         System.out.println("El saldo es inferior a la cantidad a retirar");
                     } else {
                         this.cuenta.setSaldo((int) (this.cuenta.getSaldo() - 500));
-                        Cuenta.edit(this.cuenta);
-                        System.out.println("Saldo modificado: " + this.cuenta.getSaldo());
+                        System.out.println("CodigoCliente: "+this.codigoCliente+", Saldo modificado: " + this.cuenta.getSaldo());
                         System.out.println("Operación realizada con exito");
+                        Cuenta.edit(this.cuenta);
                     }
 
                 } else if (this.op4 == 2) {
                     this.cuenta.setSaldo((int) (this.cuenta.getSaldo() + 200));
-                    Cuenta.edit(this.cuenta);
                     System.out.println("Saldo modificado: " + this.cuenta.getSaldo());
+                    Cuenta.edit(this.cuenta);
                     System.out.println("Operación realizada con exito");
                 }
      }

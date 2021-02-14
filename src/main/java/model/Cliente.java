@@ -21,7 +21,7 @@ public class Cliente extends Thread{
     protected int op;
     protected int op4;
 
-    public Cliente(int codigoCliente, String nombre, String apellidos, String dni, String login, String password, Date fecha_nac, String telefono, String email, int op, int op4) {
+    public Cliente(int codigoCliente, String nombre, String apellidos, String dni, String login, String password, Date fecha_nac, String telefono, String email, Cuenta cuenta,int op, int op4) {
         this.codigoCliente = codigoCliente;
         this.nombre = nombre;
         this.apellidos = apellidos;
@@ -31,6 +31,7 @@ public class Cliente extends Thread{
         this.fecha_nac = fecha_nac;
         this.telefono = telefono;
         this.email = email;
+        this.cuenta = cuenta;
         this.op = op;
         this.op4 = op4;
     }
