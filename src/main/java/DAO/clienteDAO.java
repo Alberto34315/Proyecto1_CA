@@ -303,22 +303,12 @@ public class clienteDAO extends Cliente {
             System.out.println("No hay saldo en la cuenta");
         }
     }
+    
     //_____________________________________________________________________________________
-
-    public void run() {
-        cuentaDAO Cuenta = new cuentaDAO();
-
-        switch (this.op) {
-            case 2:
-                ingresarOp2(Cuenta, this.cuenta);
-                break;
-            case 3:
-
-                retirarDinero(Cuenta);
-                break;
-            case 4:
-                System.out.println("Saldo de la cuenta: " + this.cuenta.getSaldo());
-
+    
+    
+     public synchronized void case4 (cuentaDAO Cuenta){
+         System.out.println("Saldo de la cuenta: " + this.cuenta.getSaldo());
                 if (this.op4 == 1) {
                     if (this.cuenta.getSaldo() < 500) {
                         System.out.println("No se puede realizar la operación");
@@ -336,6 +326,25 @@ public class clienteDAO extends Cliente {
                     System.out.println("Saldo modificado: " + this.cuenta.getSaldo());
                     System.out.println("Operación realizada con exito");
                 }
+     }
+    
+    
+    //_____________________________________________________________________________________
+
+    public void run() {
+        cuentaDAO Cuenta = new cuentaDAO();
+
+        switch (this.op) {
+            case 2:
+                ingresarOp2(Cuenta, this.cuenta);
+                break;
+            case 3:
+
+                retirarDinero(Cuenta);
+                break;
+            case 4:
+                case4(Cuenta)
+                
                 break;
         }
 
