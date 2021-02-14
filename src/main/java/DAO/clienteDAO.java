@@ -290,14 +290,15 @@ public class clienteDAO extends Cliente {
 
     //_____________________________________________________________________________________
     public synchronized void retirarDinero(cuentaDAO cue) {
-
-        System.out.println("Saldo de la cuenta: " + this.cuenta.getSaldo());
         if (this.cuenta.getSaldo() > 0) {
+
+            System.out.println(this);
+            System.out.println("Saldo de la cuenta: " + this.cuenta.getSaldo());
             int retirar = (int) (Math.random() * (this.cuenta.getSaldo() + 1));
             this.cuenta.setSaldo((int) (this.cuenta.getSaldo() - retirar));
-            cue.edit(this.cuenta);
             System.out.println("Total retirado: " + retirar);
             System.out.println("Operación realizada con exito");
+            cue.edit(this.cuenta);
         } else {
             System.out.println("No hay saldo en la cuenta");
         }
@@ -312,7 +313,7 @@ public class clienteDAO extends Cliente {
                 ingresarOp2(Cuenta, this.cuenta);
                 break;
             case 3:
-                
+
                 retirarDinero(Cuenta);
                 break;
             case 4:

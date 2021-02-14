@@ -99,45 +99,45 @@ public class GUI {
                 for (Cliente cliente : Cl1a) {
                     if (cliente.getLogin().equals("Usuario1a") && cliente.getPassword().equals("Usuario1a")) {
                         cliente1a = new clienteDAO(cliente, cue, 3);
-                        System.out.println(cliente1a);
+                        //System.out.println(cliente1a);
                         cliente1a.start();
-                        System.out.println("------------------------------------------------------------------------------------------");
+                     //   System.out.println("------------------------------------------------------------------------------------------");
                     }
                 }
 
                 for (Cliente cliente : Cl1a) {
                     if (cliente.getLogin().equals("Usuario1b") && cliente.getPassword().equals("Usuario1b")) {
                         cliente1b = new clienteDAO(cliente, cue, 3);
-                        System.out.println(cliente1b);
+                     //   System.out.println(cliente1b);
                         cliente1b.start();
-                        System.out.println("------------------------------------------------------------------------------------------");
+                     //   System.out.println("------------------------------------------------------------------------------------------");
                     }
                 }
 
                 for (Cliente cliente : Cl1a) {
                     if (cliente.getLogin().equals("Usuario1c") && cliente.getPassword().equals("Usuario1c")) {
                         cliente1c = new clienteDAO(cliente, cue, 3);
-                        System.out.println(cliente1c);
+                      //  System.out.println(cliente1c);
                         cliente1c.start();
-                        System.out.println("------------------------------------------------------------------------------------------");
+                     //   System.out.println("------------------------------------------------------------------------------------------");
                     }
                 }
 
                 for (Cliente cliente : Cl1a) {
                     if (cliente.getLogin().equals("Usuario1d") && cliente.getPassword().equals("Usuario1d")) {
                         cliente1d = new clienteDAO(cliente, cue, 3);
-                        System.out.println(cliente1d);
+                     //   System.out.println(cliente1d);
                         cliente1d.start();
-                        System.out.println("------------------------------------------------------------------------------------------");
+                     //   System.out.println("------------------------------------------------------------------------------------------");
                     }
                 }
 
                 for (Cliente cliente : Cl1a) {
                     if (cliente.getLogin().equals("Usuario1e") && cliente.getPassword().equals("Usuario1e")) {
                         cliente1e = new clienteDAO(cliente, cue, 3);
-                        System.out.println(cliente1e);
+                    //    System.out.println(cliente1e);
                         cliente1e.start();
-                        System.out.println("------------------------------------------------------------------------------------------");
+                     //   System.out.println("------------------------------------------------------------------------------------------");
                     }
                 }
                 cuentaDAO c = new cuentaDAO();
